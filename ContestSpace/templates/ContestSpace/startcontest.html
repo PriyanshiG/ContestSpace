@@ -1,0 +1,83 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Start a New Contest | ContestSpace </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'Codechef.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="row">
+          <div class="title">         
+              <a href="{% url 'index' %}" style="color: black; text-decoration: none"> ContestSpace </a>
+          </div>
+    
+          <div style=" font-size: 20px;
+          margin-top: 22px;
+          margin-right: 241px;
+          float: right;
+          top:  50%; ">
+    
+            <ul class="nav navbar-nav" style="margin-top: -12px;">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Active Contests <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                   {% if contents %}
+                 {% for contest in contents %}
+                  <li> <a href="{% url 'problems' contest.ContestCode contest.pk %}"> {{contest.name}} </li>
+                 {% endfor %}
+                 {% else %}
+                   <li>There are no contests.</li>
+                 {% endif %}
+                  </ul>
+                </li>
+            </ul>
+            <a style="padding: 10px;" href="{% url 'manageteams' %}">Manage Team</a>
+            <a style="padding: 10px;" href="{% url 'contests' 'list' %}">User History</a>
+          </div>
+    
+          {% if user_name == '123' %}
+          <div class="login">
+            <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=YOUR_ID&state=xyz&redirect_uri=http://127.0.0.1:8000/ContestSpace/"> 
+              login
+            </a>
+          </div>
+          {% else %}
+          <div class="login">
+             Hi <b> {{user_name}} </b> 
+            <a href="{% url 'index' 'logout' %}"> 
+              Logout 
+            </a>
+          </div> 
+          {% endif %}  
+        </div>
+    </div>
+    
+    
+    <div class="subheading">
+        Start With A Team
+    </div>
+
+   <p>If you want to participate single, select your username with (Single) else, select a team.</p>
+   <p style="margin-top: 74px;"> You can Manage your Teams <a href="{% url 'manageteams' %}">here </a> </p>
+   <a href="{%url 'createteamform'%}" class="btn btn-primary" style="position: relative;top: 288px;left: 178px;"> Make a Team</a>
+
+   <form action= "" method="post" style="padding-top: 200px; padding-left: 100px;">
+      {% csrf_token %}                                         
+          <select id="team" name="team_name" style="height: 30px">
+              <option> {{user_name}} (Single) </option>
+              {% if teams %}
+              {% for team in teams %}
+                  <option><a href="#" value = {{team.teamname}}> {{ team.teamname }}  </a></option>
+              {% endfor %}
+              {% endif %}
+           </select>
+         <input type="submit" value="Select Team" class="btn btn-info"> 
+    </form> 
+ 
+</body>
+</html>
+{% endblock %}

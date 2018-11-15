@@ -1,0 +1,174 @@
+body {
+  background: #f8f8f8;
+  color: #4a4a4a;
+  padding: 0;
+  margin: 0;
+  font-family: Arial,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  cursor: auto; }
+  body .topbar {
+    background: #fff;
+    height: 80px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    top: 0; }
+    body .topbar .row {
+      width: auto; 
+      margin:0;}
+      body .topbar .row .title {
+        font-size: 45px;
+        font-family: Courier New;
+        text-align: center;
+        margin-top: 10px;
+        float: left;
+        padding-left: 15px;
+        /* position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0%);  */
+      }
+        body .topbar .row .login {
+          position: absolute;
+          right: 18px;
+          top: 22px;
+          font-size: 21px; }
+
+          .subheading
+          {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            font-size: 25px;
+            font-family: Courier New;
+            transform: translateX(-50%);
+          }
+  body .info {
+    background: #fff;
+    height: auto;
+    /* position: absolute;
+    top: 125px; */
+    padding-left: 20px;
+    width: auto;
+    font-size: 18px; }
+  body .con{
+      /* position: absolute;
+      top: 300px; 
+      left: 50px; */
+      position: relative;
+      top: 100px;
+      margin-bottom: 100px;
+    }
+
+  body .contests1 {
+    box-shadow: 0 14px 28px 0 rgba(115, 143, 147, 0.5);
+    height: 180px;
+    padding-top: 10px;
+    width: 400px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center; 
+    margin-left: 25px;}
+    body .contests1 .contest_name {
+      font-size: 20px; }
+    body .contests1 .button {
+      /* background: #1ba94c; */
+      background: #4c9cdf;
+      border-color: #1ba94c;
+      box-shadow: 0 4px 12px 0 rgba(27, 169, 76, 0.5);
+      color: white;
+      padding: 10px;
+      position: relative;
+      top: 30px;
+      left: 125px; }
+  body .contests2 {
+    background: #fff;
+    box-shadow: 0 14px 28px 0 rgba(115, 143, 147, 0.5);
+    height: 180px;
+    padding-top: 10px;
+    width: 400px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center; 
+    margin-left: 50px;}
+    body .contests2 .contest_name {
+      font-size: 20px; }
+    body .contests2 .button {
+      /* background: #1ba94c; */
+      background: #4c9cdf;
+      border-color: #1ba94c;
+      box-shadow: 0 4px 12px 0 rgba(27, 169, 76, 0.5);
+      color: white;
+      padding: 10px;
+      position: relative;
+      top: 30px;
+      left: 125px; }
+  body .contests3 {
+    background: #fff;
+    box-shadow: 0 14px 28px 0 rgba(115, 143, 147, 0.5);
+    height: 180px;
+    padding-top: 10px;
+    width: 400px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center; 
+    margin-left: 75px;}
+    body .contests3 .contest_name {
+      font-size: 20px; }
+    body .contests3 .button {
+      /* background: #1ba94c; */
+      background: #4c9cdf;
+      border-color: #1ba94c;
+      box-shadow: 0 4px 12px 0 rgba(27, 169, 76, 0.5);
+      color: white;
+      padding: 10px;
+      position: relative;
+     top: 30px;
+      left: 125px; }
+  body .footer {
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    height: 40px;
+    padding-top: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0; }
+    body .footer .row .title {
+      font-size: 15px;
+      text-align: center;
+      margin-top: 10px;
+      position: relative;
+      float: left;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+
+      @media only screen and (max-width: 600px) 
+      {
+        body .con {
+          top: 430px;
+          left:0px;
+          margin-bottom: 31px;
+        }
+        body .topbar
+        {
+          width: 400px;
+        }
+        body .contests1
+        {
+          margin-left: 0px;
+        }
+        body .contests2
+        {
+          margin-left: 0px;
+        }
+        body .contests3
+        {
+          margin-left: 0px;
+        }
+      }
+
+/*# sourceMappingURL=Codechef.css.map */

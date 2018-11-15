@@ -1,0 +1,107 @@
+{% load static %}
+<html>
+    <head>
+        <title>Problem Page | ContestSpace</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'problem.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+            <div class="topbar">
+                    <div class="row">
+                      <div class="title">         
+                            <a href="{% url 'index' %}" style="color: black; text-decoration: none"> ContestSpace </a>
+                      </div>
+                
+                      <div style=" font-size: 20px;
+                      margin-top: 22px;
+                      margin-right: 241px;
+                      float: right;
+                      top:  50%; ">
+                
+                        <ul class="nav navbar-nav" style="margin-top: -12px;">
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Active Contests <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                               {% if contents %}
+                 {% for contest in contents %}
+                  <li> <a href="{% url 'problems' contest.ContestCode contest.pk %}"> {{contest.name}} </li>
+                 {% endfor %}
+                 {% else %}
+                   <li>There are no contests.</li>
+                 {% endif %}
+                              </ul>
+                            </li>
+                        </ul>
+                        <a style="padding: 10px;" href="{% url 'manageteams' %}">Manage Team</a>
+                        <a style="padding: 10px;" href="{% url 'contests' 'list' %}">User History</a>
+                      </div>
+                
+                      {% if user_name == '123' %}
+                      <div class="login">
+                        <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=102caff0257f6de65af72cdb6aab8126&state=xyz&redirect_uri=http://127.0.0.1:8000/ContestSpace/"> 
+                          login
+                        </a>
+                      </div>
+                      {% else %}
+                      <div class="login">
+                         Hi <b>{{user_name}} </b> 
+                        <a href="{% url 'index' 'logout' %}"> 
+                          Logout 
+                        </a>
+                      </div> 
+                      {% endif %}  
+                    </div>
+                </div>
+                
+                
+                <div class="subheading">
+                    {% for contest in content %}
+                        {{contest}}
+                        {{contest |add:"Hi"}}
+                     {% endfor %}
+                </div>
+
+                <div>
+                    {% if expired %}
+                        <p> Expired </p>
+                    {% else %}
+                        <p>Contest Ends in {{ endtime }}</p>
+                    {% endif %}
+                </div>
+
+
+
+
+        
+        <table class="con_table">
+                <thead>
+                  <th>Problem Code</th>
+                  <th>Go to Codechef</th>
+                </thead>
+                <tbody>
+                {% for contest in content %}
+                {% for problemcode in contest.problemcode.all %}
+                <tr>
+                    <td>
+                        {{problemcode}}
+                    </td>
+                    <td>
+                        <a href = "https://www.codechef.com/problems/{{problemcode}}" target="_blank"> Problem page </a>
+                     </td>
+                    
+                </tr>
+                {% endfor %}
+                {% endfor %} 
+               </tbody>
+              </table>
+
+              {% if expired %}
+                 <a href="{% url 'showresult' cont.ContestCode id %}" style="position:relative; top:168px; margin-bottom:15px;
+                 left: 50%; font-size:21px;" class="btn btn-info">result</a>
+              {% else %}
+             <a href="{% url 'showresult' cont.ContestCode id %}" style="position:relative; top:168px; margin-bottom:15px;
+                 left: 50%; font-size:21px;" class="btn btn-info">End contest</a>
+              {% endif %}
+    </body>
+</html>

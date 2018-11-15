@@ -1,0 +1,90 @@
+body {
+    background: #f8f8f8;
+    color: #4a4a4a;
+    padding: 0;
+    margin: 0;
+    font-family: Arial,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    position: relative;
+    cursor: auto; }
+    body .topbar {
+      background: #fff;
+      height: 80px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      position: absolute;
+      width: 100%;
+      top: 0; }
+      body .topbar .row {
+        width: auto; 
+        margin:0;}
+        body .topbar .row .title {
+          font-size: 45px;
+          font-family: Courier New;
+          text-align: center;
+          margin-top: 10px;
+          float: left;
+          padding-left: 15px; }
+          body .topbar .row .login 
+          {
+            position: absolute;
+            right: 18px;
+            top: 22px;
+            font-size: 21px;
+          }
+
+
+          .subheading
+          {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            font-size: 25px;
+            font-family: Courier New;
+            transform: translateX(-50%);
+          }
+
+.con_table
+{
+  width: 1000px;
+  margin: auto;
+  border-collapse: collapse;
+  position: relative;
+  top: 150px;
+}
+
+.con_table thead
+{
+  background: #4c9cdf;
+    border-color: #1ba94c;
+    box-shadow: 0 4px 12px 0 rgba(27, 169, 76, 0.5);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.con_table thead th
+{
+  padding: 10px;
+}
+.con_table tbody td
+{
+  padding: 10px;
+}
+p
+{
+  position: absolute;
+  top: 200px;
+  left: 645px;
+  font-size: 25px;
+}
+
+
+@media only screen and (max-width: 600px) 
+{
+    body .topbar
+    {
+      width: 400px;
+    }
+}

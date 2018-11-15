@@ -1,0 +1,128 @@
+{% load static %}
+<html>
+    <head>
+        <title>Manage Team  | ContestSpace</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'manage_team.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+            <div class="topbar">
+                    <div class="row">
+                      <div class="title">         
+                            <a href="{% url 'index' %}" style="color: black; text-decoration: none"> ContestSpace </a>
+                      </div>
+                
+                      <div style=" font-size: 20px;
+                      margin-top: 22px;
+                      margin-right: 241px;
+                      float: right;
+                      top:  50%; ">
+                
+                        <ul class="nav navbar-nav" style="margin-top: -12px;">
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Active Contests <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                               {% if contents %}
+                 {% for contest in contents %}
+                  <li> <a href="{% url 'problems' contest.ContestCode contest.pk %}"> {{contest.name}} </li>
+                 {% endfor %}
+                 {% else %}
+                   <li>There are no contests.</li>
+                 {% endif %}
+                              </ul>
+                            </li>
+                        </ul>
+                        <a style="padding: 10px;" href="{% url 'manageteams' %}">Manage Team</a>
+                        <a style="padding: 10px;" href="{% url 'contests' 'list' %}">User History</a>
+                      </div>
+                
+                      {% if user_name == '123' %}
+                      <div class="login">
+                        <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=102caff0257f6de65af72cdb6aab8126&state=xyz&redirect_uri=http://127.0.0.1:8000/ContestSpace/"> 
+                          login
+                        </a>
+                      </div>
+                      {% else %}
+                      <div class="login">
+                         Hi <b>{{user_name}} </b> 
+                        <a href="{% url 'index' 'logout' %}"> 
+                          Logout 
+                        </a>
+                      </div> 
+                      {% endif %}  
+                    </div>
+                </div>
+                
+                
+                <div class="subheading">
+                       Team Management
+                </div>
+
+            <div style="position: relative;font-size: 20px; top: 100px; float: right; right: 22px;">
+                Want to create a team? <a href="{% url 'createteamform' %}"> Click Here </a>
+            </div>
+
+            <!-- <div style="position: relative;font-size: 20px; top: 26px; margin-left: 22px; width:50%;">
+                   Go Back to home page <a href="{% url 'index' %}"> Click Here </a>
+            </div> -->
+        
+        <p style="padding-left: 275px;"> List of Teams </p>
+        <table class="con_table">
+                <thead>
+                  <th>Team Name</th>
+                  <th>Members</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>
+                        {{team.teamname}}
+                    </td>
+                    <td>
+                        {{team.user1}}, {{team.user2}}, {{team.user3}}
+                     </td>
+                    <td>
+                        <form name="leave_form" method="POST" action="">
+                            {% csrf_token %}
+                            <button type="submit" name="leave" class="btn" value={{team.teamid}}>Leave</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %} 
+               </tbody>
+            </table>
+
+        <p> Pending Team Requests </p>
+        <table class="con_table">
+                <thead>
+                  <th>Team Name</th>
+                  <th>Members</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                {% for pr in pendingreq %}
+                <tr>
+                    <td>
+                        {{pr.teamname}}
+                    </td>
+                    <td>
+                        {{pr.userp}}
+                     </td>
+                    <td>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <button type="submit" name = "accept" class="btn btn-success" value={{pr.teamidp}}> Accept </button>
+                            <button type="submit" name="decline" class="btn btn-danger" value={{pr.teamidp}}> Decline </button>
+                        </form>
+                    </td>  
+                </tr>
+                {% endfor %} 
+               </tbody>
+            </table>
+    </body>
+</html>

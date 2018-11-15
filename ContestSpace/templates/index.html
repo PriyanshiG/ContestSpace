@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    ContestSpace
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="topbar">
+    <div class="row">
+      <div class="title">         
+        ContestSpace
+      </div>
+
+      <div style=" font-size: 20px;
+      margin-top: 22px;
+      margin-right: 241px;
+      float: right;
+      top:  50%; ">
+
+        <ul class="nav navbar-nav" style="margin-top: -12px;">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Active Contests <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+               {% if content %}
+                 {% for contest in content %}
+                  <li> <a href="{% url 'problems' contest.ContestCode contest.pk %}"> {{contest.name}} </li>
+                 {% endfor %}
+                 {% else %}
+                   <li>There are no contests.</li>
+                 {% endif %}
+              </ul>
+            </li>
+        </ul>
+        <a style="padding: 10px;" href="{% url 'manageteams' %}">Manage Team</a>
+        <a style="padding: 10px;" href="{% url 'contests' 'list' %}">User History</a>
+      </div>
+
+      {% if user_name == '123' %}
+      <div class="login">
+        <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=102caff0257f6de65af72cdb6aab8126&state=xyz&redirect_uri=http://149.129.139.177:8000/ContestSpace/"> 
+          login
+        </a>
+      </div>
+      {% else %}
+      <div class="login">
+         Hi <b>{{user_name}} </b> 
+        <a href="{% url 'index' 'logout' %}"> 
+          Logout 
+        </a>
+      </div> 
+      {% endif %}  
+    </div>
+</div>
+
+
+<!-- <div>
+  <img style="position: relative;top: 80px;width: 1519px;padding: 22px;height: 540px;" src="https://cdn.lifehack.org/wp-content/uploads/2013/06/challenge__by_kuraikuroya-d4qsm7a.jpg">
+</div> -->
+  <div>
+   <p style="
+    position: relative;
+    top: 104px;
+    font-size: 35px;
+    padding-left: 114px;
+    padding-right: 114px;
+    padding-top: 115px;
+    text-align: center;
+">
+    Welcome to <b> ContestSpace </b> ! <br> 
+      Participating virtually in past Codechef contests is just a step away.  <br>
+      Go ahead and participate individually or in a team. <br>
+      Wish you all the luck!
+  </p>
+    
+    <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=102caff0257f6de65af72cdb6aab8126&state=xyz&redirect_uri=http://149.129.139.177:8000/ContestSpace/" 
+       class="btn btn-info" style="
+    position: relative;
+    left: 50%;
+    top: 80px;
+    margin-bottom: 144px;
+    margin-top: 38px;
+"> Login </a>
+</div>
+
+
+<div class="container-fluid con">
+    <div class="row" style="margin-bottom:50px;">
+      <div class="col-md-4 col-sm-12" style="padding:0px;">
+        <div class="contests1">
+            <span class="contest_name"> COOK-OFFs  </span> <br><br>
+              CodeChef Cook-Off is a two and half hour coding contest where you can show off your computer programming skills.<br>
+            <a class="button" href="{% url 'contests' 'a' %}"> Click Here </a>
+         </div>
+      </div>
+      <div class="col-md-4 col-sm-12" style="padding:0px;">
+        <div class="contests2">
+            <span class="contest_name"> Past ACM ICPC Regionals </span><br><br>
+            Past ACM ICPC Indian regionals and online round contests. Start your journey for ACM ICPC 2019 <br>
+            <a class="button" href="{% url 'contests' 'b' %}"> Click Here </a>
+          </div>
+      </div>
+      <div class="col-md-4 col-sm-12" style="padding:0px;">
+        <div class="contests3">
+            <span class="contest_name"> Other ACM ICPC Styled Contests </span> <br><br>
+            Some other ACM ICPC styled contests to help you improve! <br>
+            <a class="button" href="{% url 'contests' 'c' %}"> Click Here </a>
+         </div>
+      </div>
+    </div>
+  </div>
+<div class="footer">
+  <div class="row">
+      <div class="title">         
+          copyrights@xorier
+      </div>
+  </div>
+</div>
+</body>
+</html>

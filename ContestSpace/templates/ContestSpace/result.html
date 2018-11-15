@@ -1,0 +1,114 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Result | ContestSpace </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'problem.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="row">
+          <div class="title">         
+              <a href="{% url 'index' %}" style="color: black; text-decoration: none"> ContestSpace </a>
+          </div>
+    
+          <div style=" font-size: 20px; margin-top: 22px; margin-right: 241px; float: right;top:  50%; ">
+    
+            <ul class="nav navbar-nav" style="margin-top: -12px;">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Active Contests <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                   {% if contents %}
+                 {% for contest in contents %}
+                  <li> <a href="{% url 'problems' contest.ContestCode contest.pk %}"> {{contest.name}} </li>
+                 {% endfor %}
+                 {% else %}
+                   <li>There are no contests.</li>
+                 {% endif %}
+                  </ul>
+                </li>
+            </ul>
+            <a style="padding: 10px;" href="{% url 'manageteams' %}">Manage Team</a>
+            <a style="padding: 10px;" href="{% url 'contests' 'list' %}">User History</a>
+          </div>
+    
+          {% if user_name == '123' %}
+          <div class="login">
+            <a href="https://api.codechef.com/oauth/authorize?response_type=code&client_id=102caff0257f6de65af72cdb6aab8126&state=xyz&redirect_uri=http://127.0.0.1:8000/ContestSpace/"> 
+              login
+            </a>
+          </div>
+          {% else %}
+          <div class="login">
+             Hi <b>{{user_name}} </b> 
+            <a href="{% url 'index' 'logout' %}"> 
+              Logout 
+            </a>
+          </div> 
+          {% endif %}  
+        </div>
+    </div>
+    
+    
+    <div class="subheading" style="font-size: 35px;">
+        Result
+    </div>
+
+  <p> Total Score: {{totalscore}} </p>
+  <p style="top:126px;"> Total Time Taken: {{totaltime}} </p> <br>
+
+  <table class="con_table" style="width: 381px;">  
+    <thead>
+      <th>
+        Problem Code
+      </th>
+      <th>
+        Score
+      </th>
+      <th>
+        Time
+      </th>
+    </thead> 
+    <tbody>
+    {% if content %}
+    {% for cont in content %}
+    <tr>
+        <td>
+          {{cont.problemcode}}
+        </td>
+        <td>
+          {% if cont.time %}
+            {% if cont.penalty == 0 %}
+              1- <span style="color:green;"> ({{cont.penalty}}) </span>
+            {% else %}
+              1- <span style="color:red;"> ({{cont.penalty}}) </span>
+         {% endif %}
+
+          {% else %}
+            -
+         {% endif %}
+         </td>
+        <td>
+          {% if cont.time %}
+            {{cont.time}}
+          {% else %}
+            -
+         {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+      <p>There are no contests.</p>
+    {% endif %} 
+   </tbody>
+
+   
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock %}
