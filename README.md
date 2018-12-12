@@ -2,9 +2,14 @@
 
 ContestSpace is a web application that allow users to participate virtually in past Codechef contests.
 
-ContestSpace give two options for virtual participation - 
+![alt text](https://github.com/PriyanshiG/ContestSpace/blob/master/screenshots/Home.PNG)
 
-i) single user
-ii) team   
+![alt text](https://github.com/PriyanshiG/ContestSpace/blob/master/screenshots/Home2.PNG)
 
-The app gives detailed analysis of user's performance after the completion of the contest.
+## Features
+
+* Allows users to create a team.
+* Team participation in a contest.
+* Provides complete user history.
+* Shows all the active contests 
+* Give performance analysis.
